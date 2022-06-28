@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Welcome from '../view/welcome.vue'
+import Welcome from '../view/Welcome.vue'
 import Chatroom from '../view/Chatroom.vue'
 import { projectAuth } from '../firebase/config'
 
