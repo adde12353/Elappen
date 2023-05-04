@@ -29,9 +29,8 @@ const formatedDocuments = computed(() => {
     }
 })
   
-
     const messages = ref(null)
-
+   
     onUpdated(() => {
         messages.value.scrollTop = messages.value.scrollHeight
     }) 

@@ -3,8 +3,6 @@ import Welcome from './view/Welcome.vue'
 export default {
   components: {Welcome},
   setup() {
-
-
   }
 }
 </script>

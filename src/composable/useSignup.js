@@ -15,6 +15,7 @@ const signUp = async (email, password, displayName) => {
             throw new Error('Logging funkade inte')
         }
         await res.user.updateProfile({displayName})
+        
         error.value = null
         return res
 

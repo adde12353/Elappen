@@ -3,15 +3,24 @@
     <div>
         <p>Hejsan {{user.displayName}}!</p>
         <p class="email">Inloggad med mailen: {{user.email}}</p>
-       
+        <div style="display:flex; gap: 25px"><router-link to="/chart"><span style="color:#5ae4ca; font-size:38px" class="material-icons">insert_chart
+</span> </router-link>
+        <router-link to="/Add"><span style="color:#5ae4ca; font-size:38px" class="material-icons">add_box
+</span> </router-link>
+        <router-link to="/"><span style="color:#5ae4ca; font-size:38px" class="material-icons">chat
+</span></router-link>
+</div>
     </div>
-     <button @click="handleLogout">Logg out</button>
+     <button @click="handleLogout">Logga ut</button>
   </nav>
 </template>
 
 <script>
 import useLogout from '../composable/useLogout'
 import getUser from '../composable/getUser'
+import {RouterLink} from 'vue-router'
+import 'material-icons/iconfont/material-icons.css';
+
 export default {
 setup() {
     const {logout, error } = useLogout()
@@ -23,7 +32,8 @@ setup() {
             console.log("user logged out")
         }
     }
-    return {handleLogout, error, user}
+    console.log(user.value)
+    return {handleLogout, error, user, RouterLink}
 }
 
 }

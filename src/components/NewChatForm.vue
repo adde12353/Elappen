@@ -6,6 +6,7 @@
     @keypress.enter.prevent="handleSubmit"
     ></textarea>
     <div class="error">{{error}}</div>
+    
   </form>
 </template>
 
@@ -21,11 +22,13 @@ setup() {
     const {addDoc, error} = useCollection('messages')
     const message = ref("")
     const placeHolder = ref("Skriv in ett meddeland och tryck på skicka...")
+    const fromAdmin = ref("")
 
     const handleSubmit = async () => {
         const chat = {
             user: user.value.displayName,
             message: message.value,
+            userId: user.value.email,
             createdAt : timestamp()
         }
         if (chat.message.length > 0) {
