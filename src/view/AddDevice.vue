@@ -7,7 +7,7 @@ v-model="deviceId">
 <button
 @click="addDevice"
 >Lägg till enhet</button>
-<p>Try demo device 12</p>
+<p>För demosyfte testa att lägga till enhet 12</p>
 <p>{{infoFromAPi}}</p>
 </div>
 </template>
