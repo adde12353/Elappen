@@ -30,7 +30,6 @@ import { onMounted, ref, watchEffect} from '@vue/runtime-core'
 import getkWh from '../composable/kWh'
 import getUser from '../composable/getUser'
 import dayjs from 'dayjs'
-import { hr } from 'date-fns/locale'
 
 
 export default {
@@ -87,17 +86,23 @@ hrOrMonth.value = false
 
   const filterData = () => {
   const fetchDayData = async () => {
-   const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/test1/`, { 
+
+    const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${user.value.email}`)
+            const usersData = await fetchUser.json()
+            console.log(usersData.deviceId)
+
+   const fetchData = await fetch(`https://backendelapp.lm.r.appspot.com/test1/`, { 
         method: 'POST', 
         headers: {
         'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+        deviceId: usersData.deviceId,
         startDate: startDate.value,
         hourDatA: hrOrMonth.value})
         })
 
-    const userData = await fetchUser.json()
+    const userData = await fetchData.json()
 
       if(hrOrMonth.value){
           userData.forEach(item => {
@@ -107,10 +112,8 @@ hrOrMonth.value = false
        
         userData.forEach(item => {
       item.date = dayjs(item.date).format('D')
-      console.log(item.date)
     }) 
       }
-      console.log(userData)
 
  let data = []
   let dates = []

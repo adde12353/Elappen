@@ -8,7 +8,6 @@ const getkWh = () => {
         const kWhAll = ref();
 
     const load = async (email) => {
-        console.log(email)
         try {
             let data =[]
             let date =[]
@@ -17,17 +16,20 @@ const getkWh = () => {
             const userData = await fetchUser.json()
             console.log(userData.deviceId)
 
-
-            const results = await fetch(`https://backendelapp.lm.r.appspot.com/get/${12}`)
-            let filterTokW = await results.json()
-            filterTokW.forEach(kW => {
-                kWs.push(kW.w)
-                date.push(kW.date)
-                data.push(kW)
-            });
-            kWhDate.value = date
-            kWhUnit.value = kWs
-            kWhAll.value = data
+            if(userData.deviceId) {
+                console.log("jidoejso")
+                const results = await fetch(`https://backendelapp.lm.r.appspot.com/get/${userData.deviceId}`)
+                let filterTokW = await results.json()
+                filterTokW.forEach(kW => {
+                    kWs.push(kW.w)
+                    date.push(kW.date)
+                    data.push(kW)
+                });
+                kWhDate.value = date
+                kWhUnit.value = kWs
+                kWhAll.value = data
+            }
+           
 
             
 
