@@ -87,7 +87,7 @@ hrOrMonth.value = false
 
   const filterData = () => {
   const fetchDayData = async () => {
-   const fetchUser = await fetch(`http://localhost:4000/test1/`, { 
+   const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/test1/`, { 
         method: 'POST', 
         headers: {
         'Content-Type': 'application/json',

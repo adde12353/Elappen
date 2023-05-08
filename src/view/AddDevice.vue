@@ -29,7 +29,7 @@ setup() {
 
     const addDevice = () => {
 
-        fetch('http://localhost:4000/add', {
+        fetch('https://backendelapp.lm.r.appspot.com/add', {
         method: 'POST', // or 'PUT'
         headers: {
         'Content-Type': 'application/json',

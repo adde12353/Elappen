@@ -13,12 +13,12 @@ const getkWh = () => {
             let data =[]
             let date =[]
             let kWs =[]
-            const fetchUser = await fetch(`http://localhost:4000/getUser/${email}`)
+            const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${email}`)
             const userData = await fetchUser.json()
             console.log(userData.deviceId)
 
 
-            const results = await fetch(`http://localhost:4000/get/${12}`)
+            const results = await fetch(`https://backendelapp.lm.r.appspot.com/get/${12}`)
             let filterTokW = await results.json()
             filterTokW.forEach(kW => {
                 kWs.push(kW.w)
@@ -52,11 +52,11 @@ const error = ref(null)
 
 const load = async (email) => {
     try {
-        let userData = await fetch(`http://localhost:4000/getUser/${email}`)
+        let userData = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${email}`)
 
         const {deviceId} = await userData.json()
 
-        let data = await fetch(`http://localhost:4000/get/${deviceId}`)
+        let data = await fetch(`https://backendelapp.lm.r.appspot.com/get/${deviceId}`)
         if(!data.ok){
             throw Error('ingen data tillgänglig')
         }
