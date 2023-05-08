@@ -41,34 +41,3 @@ const getkWh = () => {
 }
 
 export default getkWh
-
-/* export default getCollection
-
-import { ref } from 'vue'
-
-const getkWh = () => {
-const kWhUnit = ref([])
-const error = ref(null)
-
-const load = async (email) => {
-    try {
-        let userData = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${email}`)
-
-        const {deviceId} = await userData.json()
-
-        let data = await fetch(`https://backendelapp.lm.r.appspot.com/get/${deviceId}`)
-        if(!data.ok){
-            throw Error('ingen data tillgänglig')
-        }
-        kWhUnit.value = await data.json()
-    }
-    catch (err){
-        error.value = err.message
-        console.log(error.value)
-    }
-}
-
-return { error, load, kWhUnit }
-}
-
-export default getkWh */
