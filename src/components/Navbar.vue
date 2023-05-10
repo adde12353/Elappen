@@ -32,7 +32,7 @@ setup() {
             console.log("user logged out")
         }
     }
-    console.log(user.value)
+    
     return {handleLogout, error, user, RouterLink}
 }
 

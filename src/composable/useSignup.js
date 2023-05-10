@@ -21,7 +21,6 @@ const signUp = async (email, password, displayName) => {
 
     } catch(err) {
 
-        console.log(err.message, typeof err.message)
         if (err.message === "The email address is already in use by another account."){
             error.value = "E-postadressen används redan av ett annat konto."
         }

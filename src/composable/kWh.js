@@ -14,10 +14,10 @@ const getkWh = () => {
             let kWs =[]
             const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${email}`)
             const userData = await fetchUser.json()
-            console.log(userData.deviceId)
+          
 
             if(userData.deviceId) {
-                console.log("jidoejso")
+                
                 const results = await fetch(`https://backendelapp.lm.r.appspot.com/get/${userData.deviceId}`)
                 let filterTokW = await results.json()
                 filterTokW.forEach(kW => {

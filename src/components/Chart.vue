@@ -89,7 +89,7 @@ hrOrMonth.value = false
 
     const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${user.value.email}`)
             const usersData = await fetchUser.json()
-            console.log(usersData.deviceId)
+            
 
    const fetchData = await fetch(`https://backendelapp.lm.r.appspot.com/test1/`, { 
         method: 'POST', 
@@ -155,7 +155,7 @@ for(let i = 0; i < 31; i++){
   }
   
 }
-  console.log(timeData)
+ 
   timeData.forEach(itemTime => {
   reduceDates.forEach(item => {
   if(itemTime.date == item.date)
