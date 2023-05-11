@@ -1,45 +1,26 @@
-import { ref } from 'vue'
+ import { ref } from 'vue'
 
 
 const getkWh = () => {
         const error = ref(null)
-        const kWhUnit = ref();
-        const kWhDate = ref();
-        const kWhAll = ref();
-
-    const load = async (email) => {
+        const chartData = ref();
+    
+    const load = async (usersData, startDate, hrOrMonth) => {
         try {
-            let data =[]
-            let date =[]
-            let kWs =[]
-            const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${email}`)
+            
+            const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/get/${usersData}/${startDate}/${hrOrMonth}`)
             const userData = await fetchUser.json()
           
-
-            if(userData.deviceId) {
-                
-                const results = await fetch(`https://backendelapp.lm.r.appspot.com/get/${userData.deviceId}`)
-                let filterTokW = await results.json()
-                filterTokW.forEach(kW => {
-                    kWs.push(kW.w)
-                    date.push(kW.date)
-                    data.push(kW)
-                });
-                kWhDate.value = date
-                kWhUnit.value = kWs
-                kWhAll.value = data
-            }
-           
-
-            
-
+            chartData.value = userData
+       
         } catch (err) {
             console.log(err)
         }
+       
     }
    
    
-    return {error, kWhUnit, load, kWhDate, kWhAll}
+    return {error, load, chartData }
 }
 
 export default getkWh

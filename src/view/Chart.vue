@@ -11,8 +11,8 @@
 
 import Navbar from '../components/Navbar.vue'
 import Chart from '../components/Chart.vue'
-import getkWh from '../composable/kWh'
-
+/* import getkWh from '../composable/kWh'
+ */
 export default {
   name: 'BarCharts',
   components: { Chart, Navbar},

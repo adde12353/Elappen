@@ -37,21 +37,17 @@ export default {
   setup () {
    
     const {user} = getUser()
-    const {kWhUnit, error, load, kWhDate, kWhAll} = getkWh() 
-    const dataForChart = ref(kWhUnit.value)
-const dateForChart = ref(kWhDate.value)
+     const {error, load, chartData} = getkWh() 
+    const dataForChart = ref()
+const dateForChart = ref()
 const hrOrMonth = ref(true)
 
-  
 
     let chart;
     const startDate = ref()
     
   onMounted( async () => { 
-    await load(user.value.email)
 
- dataForChart.value= kWhUnit.value
-dateForChart.value = kWhDate.value
 
 
   const ctx = document.getElementById('myChart');
@@ -86,24 +82,14 @@ hrOrMonth.value = false
 
   const filterData = () => {
   const fetchDayData = async () => {
-
+     
     const fetchUser = await fetch(`https://backendelapp.lm.r.appspot.com/getUser/${user.value.email}`)
             const usersData = await fetchUser.json()
-            
+          
+        await load(usersData.deviceId, startDate.value, hrOrMonth.value)
 
-   const fetchData = await fetch(`https://backendelapp.lm.r.appspot.com/test1/`, { 
-        method: 'POST', 
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        deviceId: usersData.deviceId,
-        startDate: startDate.value,
-        hourDatA: hrOrMonth.value})
-        })
-
-    const userData = await fetchData.json()
-
+    const userData = chartData.value
+  
       if(hrOrMonth.value){
           userData.forEach(item => {
       item.date = dayjs(item.date).format('HH')
@@ -182,7 +168,7 @@ chart.update()
    
    fetchDayData()
   }
-  return {filterData, startDate, kWhUnit, hrFilter, dayFilter, hrOrMonth}
+  return {filterData, startDate, hrFilter, dayFilter, hrOrMonth}
   }
 }
 </script>
